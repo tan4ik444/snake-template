@@ -76,7 +76,14 @@ function do_pixels () {
     }
 }
 sprites.onOverlap(SpriteKind.snake_head_sprite, SpriteKind.Food, function (sprite, otherSprite) {
-	
+    b_go = false
+    info.changeScoreBy(1)
+    music.playTone(262, music.beat(BeatFraction.Half))
+    otherSprite.destroy(effects.spray, 500)
+    pixel += -1
+    lengthen_snake_by_one_sprite()
+    do_pixels()
+    b_go = false
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     snake_direction = 2
@@ -98,7 +105,7 @@ function add_new_body_sprite_to_end (xp: number, yp: number) {
     snake_list.push(last_snake_sprite)
 }
 sprites.onOverlap(SpriteKind.snake_head_sprite, SpriteKind.snake_body_sprite, function (sprite, otherSprite) {
-	
+    game.over(false, effects.confetti)
 })
 function make_snake_body () {
     snake_body_image = image.create(cell_size, cell_size)
@@ -115,12 +122,10 @@ function make_snake_body () {
         add_new_body_sprite_to_end(x, y)
     }
 }
-let move_rate = 0
 let x = 0
 let y = 0
 let snake_body_image: Image = null
 let pixel_sprite: Sprite = null
-let pixel = 0
 let nexts_to_last_snake_sprite: Sprite = null
 let last_snake_sprite: Sprite = null
 let head_y_prior = 0
@@ -130,10 +135,15 @@ let snake_head: Sprite = null
 let cell_size = 0
 let snake_head_image: Image = null
 let snake_direction = 0
+let pixel = 0
 let b_go = false
 b_go = false
 scene.setBackgroundColor(4)
 info.setScore(0)
+make_snake()
+pixel = 0
+let move_rate = 500
+do_pixels()
 game.onUpdateInterval(move_rate, function () {
     if (b_go) {
         move_snake()
