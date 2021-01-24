@@ -1,0 +1,29 @@
+{
+    "name": "Snake template",
+    "description": "",
+    "dependencies": {
+        "device": "*"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md",
+        "images.g.jres",
+        "images.g.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "branch": "v0.15.18",
+        "tag": "v0.15.18",
+        "commits": "https://github.com/microsoft/pxt-arcade/commits/636055cd61c37ce9d6e5b103b3a1d34cddf11a69",
+        "target": "1.3.42",
+        "pxt": "5.30.44",
+        "targetId": "arcade"
+    },
+    "supportedTargets": [
+        "arcade"
+    ],
+    "preferredEditor": "blocksprj"
+}
